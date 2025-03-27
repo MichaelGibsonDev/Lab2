@@ -63,7 +63,7 @@ int main()
         }
         case 4:
         {
-
+            heroDB.PrintGroupCounts();
             break;
         }
         case 5:

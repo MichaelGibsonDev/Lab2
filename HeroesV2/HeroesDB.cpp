@@ -110,6 +110,47 @@ void HeroesDB::FindHero(const std::string& heroName)
 		}
 	}
 
+void HeroesDB::GroupHeroes()
+{
+	_groupedHeroes.clear();
+
+	for (const Hero& hero : _heroes)
+	{
+		std::string heroName = hero.Name();
+		if (!heroName.empty())
+		{
+			char key = std::toupper(heroName[0]);
+
+			auto it = _groupedHeroes.find(key);
+			if (it == _groupedHeroes.end())
+			{
+				std::vector<Hero> heroVec;
+				heroVec.push_back(hero);
+				_groupedHeroes[key] = heroVec;
+			}
+			else
+			{
+				it->second.push_back(hero);
+			}
+		}
+	}
+}
+
+void HeroesDB::PrintGroupCounts()
+{
+	if (_groupedHeroes.empty())
+	{
+		GroupHeroes();
+	}
+
+	for (const auto& entry : _groupedHeroes) 
+	{
+		char key = entry.first;
+		size_t count = entry.second.size();
+		std::cout << key << ": " << count << std::endl;
+	}
+}
+
 //----------------------------------------------------------------
 //                                                              //
 //		        DO NOT EDIT THE CODE BELOW                      //

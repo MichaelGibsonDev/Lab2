@@ -30,6 +30,8 @@ public:
 
     void GroupHeroes();
 
+    void PrintGroupCounts();
+
     const std::vector<Hero>& GetHeroes() const { return _heroes; }
 
 private:
