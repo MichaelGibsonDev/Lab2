@@ -221,7 +221,6 @@ void::HeroesDB::RemoveHero(const std::string& heroName)
 
 	for (std::vector<Hero>::iterator it = _heroes.begin(); it != _heroes.end(); )
 	{
-		// Compare hero names case-insensitively using the toUpper helper.
 		if (toUpper(it->Name()) == toUpper(heroName))
 		{
 			it = _heroes.erase(it);
