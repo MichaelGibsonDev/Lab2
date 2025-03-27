@@ -33,6 +33,8 @@ public:
     void PrintGroupCounts();
 
     void FindHeroesByLetter(const std::string& letter);
+    
+    void RemoveHero(const std::string& heroName);
 
     const std::vector<Hero>& GetHeroes() const { return _heroes; }
 

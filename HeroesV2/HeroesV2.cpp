@@ -74,7 +74,8 @@ int main()
         }
         case 6:
         {
-
+            std::string heroToRemove = Input::GetString("Enter a Hero Name To Remove: ");
+            heroDB.RemoveHero(heroToRemove);
             break;
         }
         default:

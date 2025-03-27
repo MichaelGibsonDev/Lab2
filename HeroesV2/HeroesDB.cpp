@@ -180,6 +180,61 @@ void HeroesDB::FindHeroesByLetter(const std::string& letter)
 	}
 }
 
+void::HeroesDB::RemoveHero(const std::string& heroName)
+{
+	if (_groupedHeroes.empty())
+	{
+		GroupHeroes();
+	}
+
+	if (heroName.empty())
+	{
+		std::cout << "No Hero Name. " << std::endl;
+		return;
+	}
+
+	char key = std::toupper(heroName[0]);
+
+	auto groupIt = _groupedHeroes.find(key);
+	if (groupIt == _groupedHeroes.end())
+	{
+		std::cout << heroName << " Was Not Found " << std::endl;
+		return;
+	}
+
+	std::vector<Hero>& groupVector = groupIt->second;
+
+	int index = BinarySearch(groupVector, heroName, 0, groupVector.size() - 1);
+	if (index == -1)
+	{
+		std::cout << heroName << " Was Not Found. " << std::endl;
+		return;
+	}
+
+	Hero heroToRemove = groupVector[index];
+	groupVector.erase(groupVector.begin() + index);
+
+	if (groupVector.empty())
+	{
+		_groupedHeroes.erase(groupIt);
+	}
+
+	for (std::vector<Hero>::iterator it = _heroes.begin(); it != _heroes.end(); )
+	{
+		// Compare hero names case-insensitively using the toUpper helper.
+		if (toUpper(it->Name()) == toUpper(heroName))
+		{
+			it = _heroes.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	std::cout << heroName << " was removed." << std::endl;
+}
+
 //----------------------------------------------------------------
 //                                                              //
 //		        DO NOT EDIT THE CODE BELOW                      //
