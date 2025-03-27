@@ -68,7 +68,8 @@ int main()
         }
         case 5:
         {
-
+            std::string letter = Input::GetString("Enter a letter to search a Hero: ");
+            heroDB.FindHeroesByLetter(letter);
             break;
         }
         case 6:

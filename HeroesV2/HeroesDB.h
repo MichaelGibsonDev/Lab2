@@ -32,6 +32,8 @@ public:
 
     void PrintGroupCounts();
 
+    void FindHeroesByLetter(const std::string& letter);
+
     const std::vector<Hero>& GetHeroes() const { return _heroes; }
 
 private:

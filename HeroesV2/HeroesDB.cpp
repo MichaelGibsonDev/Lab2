@@ -151,6 +151,35 @@ void HeroesDB::PrintGroupCounts()
 	}
 }
 
+void HeroesDB::FindHeroesByLetter(const std::string& letter)
+{
+	if (_groupedHeroes.empty())
+	{
+		GroupHeroes();
+	}
+
+	if (letter.empty())
+	{
+		std::cout << "No letter/s Found." << std::endl;
+		return;
+	}
+
+	char key = std::toupper(letter[0]);
+
+	auto it = _groupedHeroes.find(key);
+	if (it == _groupedHeroes.end())
+	{
+		std::cout << "No heroes Found, Starting with: " << std::tolower(key) << "." << std::endl;
+	}
+	else
+	{
+		for (const Hero& hero : it->second)
+		{
+			std::cout << hero.Id() << ": " << hero.Name() << std::endl;
+		}
+	}
+}
+
 //----------------------------------------------------------------
 //                                                              //
 //		        DO NOT EDIT THE CODE BELOW                      //
