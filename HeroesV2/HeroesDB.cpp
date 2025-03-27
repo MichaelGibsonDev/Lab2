@@ -145,9 +145,9 @@ void HeroesDB::PrintGroupCounts()
 
 	for (const auto& entry : _groupedHeroes) 
 	{
-		char key = entry.first;
+		char keyLower = std::tolower(entry.first);
 		size_t count = entry.second.size();
-		std::cout << key << ": " << count << std::endl;
+		std::cout << keyLower << ": " << count << std::endl;
 	}
 }
 
